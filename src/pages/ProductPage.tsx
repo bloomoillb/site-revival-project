@@ -1,9 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, MessageCircle, Leaf, Heart } from "lucide-react";
+import { ArrowLeft, MessageCircle, Leaf, Heart, Sparkles, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
-import AdvisorySection from "@/components/AdvisorySection";
 import FooterCTA from "@/components/FooterCTA";
 
 const productData: Record<string, {
@@ -174,29 +173,29 @@ const ProductPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-4">
         <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-8">
           <ArrowLeft className="w-4 h-4" /> Back to Products
         </Link>
 
+        {/* Hero: Image + Info */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Product Image */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-secondary/50 rounded-2xl p-8 flex items-center justify-center aspect-square"
+            className="rounded-2xl overflow-hidden aspect-square"
           >
-            <img src={product.image} alt={product.name} className="w-full h-full object-contain" />
+            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
           </motion.div>
 
-          {/* Product Info */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
+            className="flex flex-col justify-center"
           >
             <p className="text-sm text-primary font-medium mb-2">Bloom Oil Collection</p>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               {product.name}
             </h1>
             <p className="text-lg text-muted-foreground mb-4">{product.tagline}</p>
@@ -225,63 +224,65 @@ const ProductPage = () => {
           </motion.div>
         </div>
 
-        {/* Key Benefits */}
+        {/* 3-Column Cards: Benefits, Ingredients, How to Use */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="mt-16 grid md:grid-cols-3 gap-6"
         >
-          <h3 className="text-2xl font-bold text-foreground mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Key Benefits
-          </h3>
-          <ul className="space-y-3">
-            {product.benefits.map((b) => (
-              <li key={b} className="flex items-start gap-3 text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
-                {b}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {/* Key Benefits Card */}
+          <div className="bg-card rounded-2xl p-6 border border-border shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground">Key Benefits</h3>
+            </div>
+            <ul className="space-y-3">
+              {product.benefits.map((b) => (
+                <li key={b} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Premium Natural Ingredients */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Premium Natural Ingredients
-          </h3>
-          <ul className="space-y-3">
-            {product.ingredients.map((ing) => (
-              <li key={ing.name} className="flex items-start gap-3 text-muted-foreground">
-                <span className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
-                <span>
-                  <strong className="text-foreground">{ing.name}</strong>
-                  {ing.benefit && <span> — {ing.benefit}</span>}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </motion.div>
+          {/* Ingredients Card */}
+          <div className="bg-card rounded-2xl p-6 border border-border shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <Leaf className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground">Premium Natural Ingredients</h3>
+            </div>
+            <ul className="space-y-3">
+              {product.ingredients.map((ing) => (
+                <li key={ing.name} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <span className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
+                  <span>
+                    <span className="text-foreground font-medium">{ing.name}</span>
+                    {ing.benefit && <span> — {ing.benefit}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* How to Use */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <h3 className="text-2xl font-bold text-foreground mb-6" style={{ fontFamily: "'Playfair Display', serif" }}>
-            How to Use
-          </h3>
-          <div className="space-y-3">
-            {product.howToUse.map((step, i) => (
-              <p key={i} className="text-muted-foreground">{step}</p>
-            ))}
+          {/* How to Use Card */}
+          <div className="bg-card rounded-2xl p-6 border border-border shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground">How to Use</h3>
+            </div>
+            <div className="space-y-3">
+              {product.howToUse.map((step, i) => (
+                <p key={i} className="text-sm text-muted-foreground">{step}</p>
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -293,7 +294,7 @@ const ProductPage = () => {
           className="mt-16 mb-8"
         >
           <div className="bg-secondary/60 rounded-2xl p-8 border border-border max-w-2xl">
-            <h4 className="font-semibold text-foreground mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h4 className="font-semibold text-foreground mb-4">
               Usage Advisory
             </h4>
             <ul className="space-y-2">
