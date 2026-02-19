@@ -4,6 +4,7 @@ import { AlertTriangle } from "lucide-react";
 const advisories = [
   { bold: "Patch Test Required:", text: "Always perform a patch test 24 hours before first use." },
   { bold: "External Use Only:", text: "Keep away from eyes and mucous membranes." },
+  { bold: "Sensitivity:", text: "May cause sensitivity in some individuals due to essential oils." },
   { bold: "Allergies:", text: "Discontinue use if irritation, redness, or allergic reaction occurs." },
   { bold: "Storage:", text: "Store in a cool, dry place away from direct sunlight." },
   { bold: "Children:", text: "Keep out of reach of children." },
