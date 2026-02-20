@@ -20,8 +20,8 @@ const productData: Record<string, {
 }> = {
   hair: {
     name: "Premium Hair Oil",
-    tagline: "Nourish and strengthen your hair naturally",
-    description: "Our Premium Hair Oil is a luxurious blend of nature's finest oils, carefully formulated to transform your hair from the roots to the tips. Enriched with vitamins and essential fatty acids, this oil deeply nourishes each strand while promoting healthy hair growth.",
+    tagline: "Nourish, strengthen, and revive your hair naturally",
+    description: "Our Premium Hair Oil is a carefully crafted blend of Coconut, Castor, Sweet Almond, and Rosemary extract, enriched with Vitamin E to deeply condition the hair and scalp.\n\nRich in essential fatty acids and antioxidants, this lightweight oil helps reduce dryness, minimize breakage, and enhance natural shine — leaving hair looking fuller, smoother, and healthier from root to tip.",
     price: "$25",
     size: "100 ml / 3.4 oz",
     image: "/images/hair-oil.png",
@@ -201,7 +201,11 @@ const ProductPage = () => {
               {product.name}
             </h1>
             <p className="text-lg text-muted-foreground mb-4">{product.tagline}</p>
-            <p className="text-muted-foreground mb-6">{product.description}</p>
+            <div className="text-muted-foreground mb-6 space-y-3">
+              {product.description.split('\n\n').map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
 
             <div className="flex items-center gap-4 mb-6">
               <span className="inline-flex items-center gap-1 text-sm text-primary">
