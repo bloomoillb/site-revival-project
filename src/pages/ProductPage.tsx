@@ -49,8 +49,8 @@ const productData: Record<string, {
   },
   body: {
     name: "Luxurious Body Oil",
-    tagline: "Hydrate and rejuvenate your skin",
-    description: "Indulge in our Luxurious Body Oil, a rich blend that melts into your skin, leaving it silky smooth and deeply moisturized. Perfect for daily use, this lightweight yet nourishing formula absorbs quickly without leaving a greasy residue.",
+    tagline: "Smooth. Nourish. Glow.",
+    description: "A lightweight, fast-absorbing oil that deeply hydrates and softens the skin while enhancing a healthy, radiant appearance. Designed for daily use, it leaves your body feeling silky, supple, and beautifully revitalized — without heaviness or residue.",
     price: "$30",
     size: "100 ml / 3.4 oz",
     image: "/images/body-oil.png",
