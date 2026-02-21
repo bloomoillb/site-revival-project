@@ -68,8 +68,11 @@ const ProductsSection = () => {
                     <img
                       src={p.image}
                       alt={p.name}
+                      width={400}
+                      height={400}
+                      loading={i < 2 ? "eager" : "lazy"}
+                      decoding="async"
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
                     />
                   </div>
                   <CardContent className="p-5">
