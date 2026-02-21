@@ -8,7 +8,7 @@ const products = [
     desc: "Nourish and strengthen your hair with our blend of natural oils",
     price: "$25",
     size: "100 ml / 3.4 oz",
-    image: "/images/hair-oil.png",
+    image: "/images/hair-oil.webp",
     path: "/product/hair",
   },
   {
@@ -16,7 +16,7 @@ const products = [
     desc: "Hydrate and rejuvenate your skin with our premium body oil blend",
     price: "$30",
     size: "100 ml / 3.4 oz",
-    image: "/images/body-oil.png",
+    image: "/images/body-oil.webp",
     path: "/product/body",
   },
   {
@@ -24,7 +24,7 @@ const products = [
     desc: "Strengthen and nourish your nails with our specialized formula",
     price: "$7",
     size: "15 ml / 0.5 oz",
-    image: "/images/nail-oil.png",
+    image: "/images/nail-oil.webp",
     path: "/product/nails",
   },
   {

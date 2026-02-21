@@ -24,7 +24,7 @@ const productData: Record<string, {
     description: "Our Premium Hair Oil is a carefully crafted blend of Coconut, Castor, Sweet Almond, and Rosemary extract, enriched with Vitamin E to deeply condition the hair and scalp.\n\nRich in essential fatty acids and antioxidants, this lightweight oil helps reduce dryness, minimize breakage, and enhance natural shine — leaving hair looking fuller, smoother, and healthier from root to tip.",
     price: "$25",
     size: "100 ml / 3.4 oz",
-    image: "/images/hair-oil.png",
+    image: "/images/hair-oil.webp",
     benefits: [
       "Deep hydration and strengthens hair",
       "Promotes healthy hair growth and density",
@@ -53,7 +53,7 @@ const productData: Record<string, {
     description: "A lightweight, fast-absorbing oil that deeply hydrates and softens the skin while enhancing a healthy, radiant appearance. Designed for daily use, it leaves your body feeling silky, supple, and beautifully revitalized — without heaviness or residue.",
     price: "$30",
     size: "100 ml / 3.4 oz",
-    image: "/images/body-oil.png",
+    image: "/images/body-oil.webp",
     benefits: [
       "Deeply nourishes the skin and keeps it feeling soft for hours",
       "Helps lock in moisture after showering to prevent dryness",
@@ -86,7 +86,7 @@ const productData: Record<string, {
     description: "Give your nails the care they deserve with our specialized Nail Care Oil. This concentrated formula penetrates deep into the nail bed and cuticles, providing essential nutrients for stronger, healthier nails.",
     price: "$7",
     size: "15 ml / 0.5 oz",
-    image: "/images/nail-oil.png",
+    image: "/images/nail-oil.webp",
     benefits: [
       "Strengthens weak, brittle nails",
       "Softens and conditions cuticles",
