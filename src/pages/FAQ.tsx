@@ -66,7 +66,7 @@ const FAQ = () => {
         </Accordion>
       </div>
       
-      <FooterCTA />
+      
     </div>
   );
 };
