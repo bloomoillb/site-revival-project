@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import FooterCTA from "@/components/FooterCTA";
-import AdvisorySection from "@/components/AdvisorySection";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 const faqs = [
@@ -66,7 +65,7 @@ const FAQ = () => {
           ))}
         </Accordion>
       </div>
-      <AdvisorySection />
+      
       <FooterCTA />
     </div>
   );
