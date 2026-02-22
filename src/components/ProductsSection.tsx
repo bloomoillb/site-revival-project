@@ -16,7 +16,7 @@ const products = [
     desc: "Hydrate and rejuvenate your skin with our premium body oil blend",
     price: "$30",
     size: "100 ml / 3.4 oz",
-    image: "/images/body-oil.webp",
+    image: "/images/body-oil-new.png",
     path: "/product/body",
   },
   {

@@ -53,7 +53,7 @@ const productData: Record<string, {
     description: "A lightweight, fast-absorbing oil that deeply hydrates and softens the skin while enhancing a healthy, radiant appearance. Designed for daily use, it leaves your body feeling silky, supple, and beautifully revitalized — without heaviness or residue.",
     price: "$30",
     size: "100 ml / 3.4 oz",
-    image: "/images/body-oil.webp",
+    image: "/images/body-oil-new.png",
     benefits: [
       "Deeply nourishes the skin and keeps it feeling soft for hours",
       "Helps lock in moisture after showering to prevent dryness",
