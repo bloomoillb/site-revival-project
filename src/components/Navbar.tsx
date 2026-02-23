@@ -28,8 +28,6 @@ const navLinks = [
   { label: "Body Oil", path: "/product/body" },
   { label: "Nails Oil", path: "/product/nails" },
   { label: "Eyebrows Oil", path: "/product/eyebrows" },
-  { label: "FAQ", path: "/faq" },
-  { label: "Contact", path: "https://wa.me/79403188", external: true },
 ];
 
 const Navbar = () => {
@@ -50,33 +48,14 @@ const Navbar = () => {
             <DropdownMenuContent align="start" className="w-48">
               {navLinks.map((link, i) => (
                 <div key={link.label}>
-                  {link.external ? (
-                    <DropdownMenuItem asChild>
-                      <a href={link.path} target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-                        {link.label}
-                      </a>
-                    </DropdownMenuItem>
-                  ) : (
-                    <DropdownMenuItem asChild>
-                      <Link to={link.path} className={`cursor-pointer ${location.pathname === link.path ? "font-medium text-primary" : ""}`}>
-                        {link.label}
-                      </Link>
-                    </DropdownMenuItem>
-                  )}
+                  <DropdownMenuItem asChild>
+                    <Link to={link.path} className={`cursor-pointer ${location.pathname === link.path ? "font-medium text-primary" : ""}`}>
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
                   {i === 0 && <DropdownMenuSeparator />}
                 </div>
               ))}
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <a href="https://www.instagram.com/bloomoillb" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-                  Instagram
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a href="https://www.tiktok.com/@bloomoil" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-                  TikTok
-                </a>
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -95,30 +74,15 @@ const Navbar = () => {
         </div>
 
         <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) =>
-            link.external ? (
-              <a key={link.label} href={link.path} target="_blank" rel="noopener noreferrer"
-                className="px-3 py-2 text-sm rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
-                {link.label}
-              </a>
-            ) : (
+          {navLinks.map((link) => (
               <Link key={link.label} to={link.path}
                 className={`px-3 py-2 text-sm rounded-full transition-colors ${location.pathname === link.path ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}>
                 {link.label}
               </Link>
-            )
-          )}
+          ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <a href="https://www.instagram.com/bloomoillb" target="_blank" rel="noopener noreferrer"
-            className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors" aria-label="Instagram">
-            <InstagramIcon />
-          </a>
-          <a href="https://www.tiktok.com/@bloomoil" target="_blank" rel="noopener noreferrer"
-            className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors" aria-label="TikTok">
-            <TikTokIcon />
-          </a>
           <a href="https://wa.me/79403188" target="_blank" rel="noopener noreferrer">
             <Button variant="outline" size="sm" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
               Cash on Delivery
@@ -133,30 +97,13 @@ const Navbar = () => {
 
       {open && (
         <nav className="md:hidden border-t border-border bg-background px-4 py-4 space-y-1">
-          {navLinks.map((link) =>
-            link.external ? (
-              <a key={link.label} href={link.path} target="_blank" rel="noopener noreferrer"
-                className="block px-3 py-2 text-sm rounded-lg text-muted-foreground hover:bg-accent" onClick={() => setOpen(false)}>
-                {link.label}
-              </a>
-            ) : (
+          {navLinks.map((link) => (
               <Link key={link.label} to={link.path}
                 className={`block px-3 py-2 text-sm rounded-lg ${location.pathname === link.path ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent"}`}
                 onClick={() => setOpen(false)}>
                 {link.label}
               </Link>
-            )
-          )}
-          <div className="flex gap-2 pt-2 border-t border-border mt-1">
-            <a href="https://www.instagram.com/bloomoillb" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg text-muted-foreground hover:bg-accent" onClick={() => setOpen(false)}>
-              <InstagramIcon /> Instagram
-            </a>
-            <a href="https://www.tiktok.com/@bloomoil" target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg text-muted-foreground hover:bg-accent" onClick={() => setOpen(false)}>
-              <TikTokIcon /> TikTok
-            </a>
-          </div>
+          ))}
         </nav>
       )}
     </header>
