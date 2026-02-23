@@ -1,3 +1,4 @@
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import FooterCTA from "@/components/FooterCTA";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -48,6 +49,7 @@ const faqs = [
 const FAQ = () => {
   return (
     <div className="min-h-screen bg-background">
+      <AnnouncementBar />
       <Navbar />
       <div className="container mx-auto px-4 py-16 max-w-2xl">
         <h1 className="text-3xl md:text-4xl font-bold text-foreground text-center mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>

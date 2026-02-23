@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, MessageCircle, Leaf, Heart, Sparkles, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import FooterCTA from "@/components/FooterCTA";
 
@@ -161,6 +162,7 @@ const ProductPage = () => {
   if (!product) {
     return (
       <div className="min-h-screen bg-background">
+        <AnnouncementBar />
         <Navbar />
         <div className="container mx-auto px-4 py-20 text-center">
           <h1 className="text-2xl font-bold mb-4">Product not found</h1>
@@ -174,6 +176,7 @@ const ProductPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <AnnouncementBar />
       <Navbar />
       <div className="container mx-auto px-4 py-4">
         <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-8">
