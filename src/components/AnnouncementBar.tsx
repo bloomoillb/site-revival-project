@@ -22,9 +22,9 @@ const AnnouncementBar = () => {
   }, []);
 
   return (
-    <div className="text-center py-2.5 px-4" style={{ backgroundColor: '#FEFEFA' }}>
+    <div className="bg-primary text-center py-2.5 px-4">
       <p
-        className={`text-xs font-sans tracking-widest uppercase text-foreground transition-opacity duration-400 ${
+        className={`text-xs font-sans tracking-widest uppercase text-primary-foreground transition-opacity duration-400 ${
           visible ? "opacity-100" : "opacity-0"
         }`}
       >
