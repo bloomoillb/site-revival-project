@@ -23,7 +23,6 @@ const TikTokIcon = () => (
 );
 
 const navLinks = [
-  { label: "Home", path: "/" },
   { label: "Hair Oil", path: "/product/hair" },
   { label: "Body Oil", path: "/product/body" },
   { label: "Nails Oil", path: "/product/nails" },
@@ -46,15 +45,12 @@ const Navbar = () => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-48">
-              {navLinks.map((link, i) => (
-                <div key={link.label}>
-                  <DropdownMenuItem asChild>
+              {navLinks.map((link) => (
+                  <DropdownMenuItem key={link.label} asChild>
                     <Link to={link.path} className={`cursor-pointer ${location.pathname === link.path ? "font-medium text-primary" : ""}`}>
                       {link.label}
                     </Link>
                   </DropdownMenuItem>
-                  {i === 0 && <DropdownMenuSeparator />}
-                </div>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
