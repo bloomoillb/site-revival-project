@@ -48,7 +48,7 @@ const FooterCTA = () => {
             <TikTokIcon />
           </a>
         </div>
-        <p className="text-sm text-muted-foreground">Made in Beirut, Lebanon · Tel: <a href="tel:79403188" className="hover:text-foreground transition-colors">79 403 188</a></p>
+        <p className="text-sm text-muted-foreground">Made in Beirut, Lebanon · Tel: <a href="tel:79403188" className="hover:text-foreground transition-colors">79 403 188</a> · <a href="mailto:info@bloomoil.beauty" className="hover:text-foreground transition-colors">info@bloomoil.beauty</a></p>
         <p className="text-xs text-muted-foreground">© 2025 Bloom Oil. Natural Beauty Solutions. All rights reserved.</p>
       </div>
     </section>
