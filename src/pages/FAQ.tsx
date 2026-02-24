@@ -10,11 +10,15 @@ const faqs = [
   },
   {
     q: "Are your oils 100% natural?",
-    a: "Yes! All Bloom Oil products are made with pure, natural ingredients. We never use synthetic fragrances, parabens, or harsh chemicals.",
+    a: "Yes! All Bloom Oil products are made with pure, natural ingredients. We never use synthetic fragrances, parabens, sulfates, or harsh chemicals in any of our oils. What you get is clean, nature-powered beauty care.",
   },
   {
     q: "How long does delivery take?",
-    a: "Delivery times vary by location. We offer cash on delivery for local orders. Contact us via WhatsApp for specific delivery estimates to your area.",
+    a: "Delivery takes up to 4 working days depending on your location. We offer cash on delivery for all local orders across Lebanon.",
+  },
+  {
+    q: "How can I contact you or place an order?",
+    a: "You can reach us anytime via WhatsApp at 79 403 188, by email at info@bloomoil.beauty, or through our Instagram @bloomoillb. To order, simply tap 'Order via WhatsApp' on any product page.",
   },
   {
     q: "How long before I see results?",
@@ -22,7 +26,7 @@ const faqs = [
   },
   {
     q: "Are Bloom Oil products suitable for sensitive skin?",
-    a: "Our products are formulated with gentle, natural ingredients. However, we always recommend performing a patch test 24 hours before first use, especially if you have sensitive skin.",
+    a: "Our products are formulated with gentle, natural ingredients free from parabens and chemicals. However, we always recommend performing a patch test 24 hours before first use, especially if you have sensitive skin.",
   },
   {
     q: "How should I store my Bloom Oil products?",
@@ -31,10 +35,6 @@ const faqs = [
   {
     q: "Can I use multiple Bloom Oil products together?",
     a: "Absolutely! Our products are designed to complement each other. You can use the hair oil, body oil, nail oil, and brow elixir as part of your complete beauty routine.",
-  },
-  {
-    q: "How do I place an order?",
-    a: "Simply click 'Order via WhatsApp' on any product page to message us directly. We offer cash on delivery for your convenience.",
   },
   {
     q: "Do you offer refunds or exchanges?",
