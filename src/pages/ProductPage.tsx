@@ -193,9 +193,9 @@ const ProductPage = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="rounded-2xl overflow-hidden"
+            className="rounded-2xl overflow-hidden bg-secondary/30 flex items-center justify-center p-6"
           >
-            <img src={product.image} alt={product.name} className="w-full h-auto object-contain" />
+            <img src={product.image} alt={product.name} className="w-full max-h-[500px] object-contain" />
           </motion.div>
 
           <motion.div
