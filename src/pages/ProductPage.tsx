@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, MessageCircle, Leaf, Heart, Sparkles, Clock, CheckCircle } from "lucide-react";
@@ -157,6 +158,10 @@ const defaultAdvisories = [
 
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
   const product = id ? productData[id] : null;
 
   if (!product) {
