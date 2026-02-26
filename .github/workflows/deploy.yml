@@ -1,35 +1,36 @@
-name: Deploy Lovable Site
+name: Build and Deploy Vite Site
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
+      # Checkout repo
       - uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      # Setup Node.js
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: Install dependencies
-        run: bun install
+      # Install dependencies
+      - run: npm ci
 
-      - name: Build site
-        run: bun run build
+      # Build Vite project
+      - run: npm run build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      # Upload built site
+      - uses: actions/upload-pages-artifact@v1
         with:
           path: dist
 
@@ -42,4 +43,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
