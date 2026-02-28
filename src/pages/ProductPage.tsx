@@ -93,7 +93,7 @@ const productData: Record<string, {
       "Deeply moisturizes nails and cuticles",
       "Strengthens weak, brittle nails",
       "Promotes healthy nail growth",
-      "Prevents breakage and splitting",
+      "Reduces breakage and splitting",
       "Adds natural shine and smoothness",
     ],
     ingredients: [
