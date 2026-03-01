@@ -6,161 +6,120 @@ import { Button } from "@/components/ui/button";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import FooterCTA from "@/components/FooterCTA";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const productData: Record<string, {
-  name: string;
-  tagline: string;
-  description: string;
+interface ProductConfig {
+  nameKey: string;
+  taglineKey: string;
+  descriptionKey: string;
   price: string;
   size: string;
   image: string;
-  benefits: string[];
-  ingredients: { name: string; benefit?: string }[];
-  howToUse: string[];
+  benefitKeys: string[];
+  ingredients: { nameKey: string; benefitKey?: string }[];
+  howToUseKeys: string[];
   whatsappText: string;
-  advisoryOverrides?: { bold: string; text: string }[];
-}> = {
+  advisoryOverrideKeys?: { boldKey: string; textKey: string }[];
+}
+
+const productData: Record<string, ProductConfig> = {
   hair: {
-    name: "Premium Hair Oil",
-    tagline: "Nourish, strengthen, and revive your hair naturally",
-    description: "Our Premium Hair Oil is a carefully crafted blend of Coconut, Castor, Sweet Almond, and Rosemary extract, enriched with Vitamin E to deeply condition the hair and scalp.\n\nRich in essential fatty acids and antioxidants, this lightweight oil helps reduce dryness, minimize breakage, and enhance natural shine — leaving hair looking fuller, smoother, and healthier from root to tip.",
+    nameKey: "product.hair.name",
+    taglineKey: "product.hair.tagline",
+    descriptionKey: "product.hair.description",
     price: "$25",
     size: "100 ml / 3.4 oz",
     image: "/images/hair-oil.webp",
-    benefits: [
-      "Helps moisturize and soften dry hair",
-      "Improves the look of fuller, smoother strands",
-      "Helps condition dry scalp feel",
-      "Enhances natural shine and manageability",
-      "Helps reduce the appearance of breakage and split ends",
-    ],
+    benefitKeys: ["product.hair.benefit1", "product.hair.benefit2", "product.hair.benefit3", "product.hair.benefit4", "product.hair.benefit5"],
     ingredients: [
-      { name: "Coconut Oil", benefit: "Helps moisturize hair" },
-      { name: "Castor Oil", benefit: "Adds shine and improves hair feel" },
-      { name: "Sweet Almond Oil", benefit: "Helps soften and smooth strands" },
-      { name: "Rosemary Extract", benefit: "Refreshes scalp feel" },
-      { name: "Vitamin E", benefit: "Helps protect from dryness" },
+      { nameKey: "product.hair.ing1", benefitKey: "product.hair.ing1b" },
+      { nameKey: "product.hair.ing2", benefitKey: "product.hair.ing2b" },
+      { nameKey: "product.hair.ing3", benefitKey: "product.hair.ing3b" },
+      { nameKey: "product.hair.ing4", benefitKey: "product.hair.ing4b" },
+      { nameKey: "product.hair.ing5", benefitKey: "product.hair.ing5b" },
     ],
-    howToUse: [
-      "Apply a few drops to damp or dry hair.",
-      "Massage gently into scalp and hair from roots to ends.",
-      "For more intensive conditioning, apply generously and leave overnight.",
-      "Use 2–3 times per week as part of your hair care routine.",
-    ],
+    howToUseKeys: ["product.hair.use1", "product.hair.use2", "product.hair.use3", "product.hair.use4"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Premium%20Hair%20Oil.",
   },
   body: {
-    name: "Luxurious Body Oil",
-    tagline: "Smooth. Nourish. Glow.",
-    description: "A lightweight, fast-absorbing oil that deeply hydrates and softens the skin while enhancing a healthy, radiant appearance. Designed for daily use, it leaves your body feeling silky, supple, and beautifully revitalized — without heaviness or residue.",
+    nameKey: "product.body.name",
+    taglineKey: "product.body.tagline",
+    descriptionKey: "product.body.description",
     price: "$30",
     size: "100 ml / 3.4 oz",
     image: "/images/body-oil-new.png",
-    benefits: [
-      "Deeply nourishes the skin and keeps it feeling soft for hours",
-      "Helps lock in moisture after showering to prevent dryness",
-      "Improves skin smoothness and makes rough areas feel softer",
-      "Gives the skin a natural, healthy-looking glow",
-      "Supports more elastic, supple-looking skin over time",
-      "Helps protect skin from daily environmental stress with antioxidant-rich ingredients",
-      "Revives dull-looking skin and makes it look fresher and more radiant",
-      "Enhances relaxation when used for body massage",
-      "Absorbs well and leaves skin silky without a heavy, greasy feel",
-      "Leaves a light, refreshing natural scent that boosts the self-care experience",
-    ],
+    benefitKeys: Array.from({ length: 10 }, (_, i) => `product.body.benefit${i + 1}`),
     ingredients: [
-      { name: "Sweet Almond Oil" },
-      { name: "Vitamin E" },
-      { name: "Sweet Orange Oil" },
-      { name: "Rosemary Oil" },
-      { name: "Ginger Oil" },
+      { nameKey: "ing.sweetAlmond" },
+      { nameKey: "ing.vitaminE" },
+      { nameKey: "ing.sweetOrange" },
+      { nameKey: "ing.rosemaryOil" },
+      { nameKey: "ing.ginger" },
     ],
-    howToUse: [
-      "Apply after showering while skin is still slightly damp.",
-      "Massage in circular motions until fully absorbed.",
-      "Use daily for best results.",
-    ],
+    howToUseKeys: ["product.body.use1", "product.body.use2", "product.body.use3"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Luxurious%20Body%20Oil.",
   },
   nails: {
-    name: "Nail Care Oil",
-    tagline: "Strengthen and nourish your nails",
-    description: "Give your nails the care they deserve with our specialized Nail Care Oil. This concentrated formula penetrates deep into the nail bed and cuticles, providing essential nutrients for stronger, healthier nails.",
+    nameKey: "product.nails.name",
+    taglineKey: "product.nails.tagline",
+    descriptionKey: "product.nails.description",
     price: "$7",
     size: "15 ml / 0.5 oz",
     image: "/images/nail-oil.webp",
-    benefits: [
-      "Deeply moisturizes nails and cuticles",
-      "Strengthens weak, brittle nails",
-      "Promotes healthy nail growth",
-      "Reduces breakage and splitting",
-      "Adds natural shine and smoothness",
-    ],
+    benefitKeys: ["product.nails.benefit1", "product.nails.benefit2", "product.nails.benefit3", "product.nails.benefit4", "product.nails.benefit5"],
     ingredients: [
-      { name: "Sweet Almond Oil", benefit: "Nourishment & softness" },
-      { name: "Castor Oil", benefit: "Nail growth & strength" },
-      { name: "Coconut Oil", benefit: "Deep hydration" },
-      { name: "Vitamin E", benefit: "Antioxidant protection" },
+      { nameKey: "product.nails.ing1", benefitKey: "product.nails.ing1b" },
+      { nameKey: "product.nails.ing2", benefitKey: "product.nails.ing2b" },
+      { nameKey: "product.nails.ing3", benefitKey: "product.nails.ing3b" },
+      { nameKey: "product.nails.ing4", benefitKey: "product.nails.ing4b" },
     ],
-    howToUse: [
-      "Apply a small drop to each nail and cuticle.",
-      "Massage gently for 1-2 minutes.",
-      "Use twice daily for best results, especially before bedtime.",
-    ],
+    howToUseKeys: ["product.nails.use1", "product.nails.use2", "product.nails.use3"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Nail%20Care%20Oil.",
   },
   eyebrows: {
-    name: "Brow & Lash Elixir",
-    tagline: "Achieve fuller, more defined brows and lashes",
-    description: "Transform your brows and lashes with our specially formulated Elixir. Designed to stimulate hair growth and nourish existing brows and lashes, this elixir helps you achieve naturally fuller, thicker results over time.",
+    nameKey: "product.eyebrows.name",
+    taglineKey: "product.eyebrows.tagline",
+    descriptionKey: "product.eyebrows.description",
     price: "$12",
     size: "15 ml / 0.5 oz",
     image: "/images/brow-oil.png",
-    benefits: [
-      "Promotes brow and lash growth",
-      "Thickens and darkens brows naturally",
-      "Conditions and softens brow and lash hairs",
-      "Fills in sparse areas over time",
-      "Gentle formula for sensitive skin",
-    ],
+    benefitKeys: ["product.eyebrows.benefit1", "product.eyebrows.benefit2", "product.eyebrows.benefit3", "product.eyebrows.benefit4", "product.eyebrows.benefit5"],
     ingredients: [
-      { name: "Castor Oil" },
-      { name: "Sweet Almond Oil" },
-      { name: "Argan Oil" },
-      { name: "Vitamin E" },
+      { nameKey: "ing.castor" },
+      { nameKey: "ing.sweetAlmond" },
+      { nameKey: "ing.argan" },
+      { nameKey: "ing.vitaminE" },
     ],
-    howToUse: [
-      "Using the applicator or a clean spoolie, apply a thin layer to clean brows and along the lash line (avoid direct contact with eyes) before bedtime.",
-      "Leave on overnight and gently cleanse in the morning.",
-      "Use consistently for 4–6 weeks for best visible results in the appearance of brows and lashes.",
-    ],
+    howToUseKeys: ["product.eyebrows.use1", "product.eyebrows.use2", "product.eyebrows.use3"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Brow%20&%20Lash%20Elixir.",
-    advisoryOverrides: [
-      { bold: "Lash Application:", text: "Apply along the lash line only — avoid direct contact with eyes." },
-      { bold: "External Use Only:", text: "Keep away from eyes and mucous membranes." },
-      { bold: "Sensitivity:", text: "May cause sensitivity in some individuals due to essential oils." },
-      { bold: "Allergies:", text: "Discontinue use if irritation, redness, or allergic reaction occurs." },
-      { bold: "Storage:", text: "Store in a cool, dry place away from direct sunlight." },
-      { bold: "Children:", text: "Keep out of reach of children." },
+    advisoryOverrideKeys: [
+      { boldKey: "advisory.lash.bold", textKey: "advisory.lash.text" },
+      { boldKey: "advisory.external.bold", textKey: "advisory.external.text" },
+      { boldKey: "advisory.sensitivity.bold", textKey: "advisory.sensitivity.text" },
+      { boldKey: "advisory.allergies.bold", textKey: "advisory.allergies.text" },
+      { boldKey: "advisory.storage.bold", textKey: "advisory.storage.text" },
+      { boldKey: "advisory.children.bold", textKey: "advisory.children.text" },
     ],
   },
 };
 
-const defaultAdvisories = [
-  { bold: "Patch Test Required:", text: "Always perform a patch test 24 hours before first use." },
-  { bold: "External Use Only:", text: "Keep away from eyes and mucous membranes." },
-  { bold: "Sensitivity:", text: "May cause sensitivity in some individuals due to essential oils." },
-  { bold: "Allergies:", text: "Discontinue use if irritation, redness, or allergic reaction occurs." },
-  { bold: "Storage:", text: "Store in a cool, dry place away from direct sunlight." },
-  { bold: "Children:", text: "Keep out of reach of children." },
+const defaultAdvisoryKeys = [
+  { boldKey: "advisory.patchTest.bold", textKey: "advisory.patchTest.text" },
+  { boldKey: "advisory.external.bold", textKey: "advisory.external.text" },
+  { boldKey: "advisory.sensitivity.bold", textKey: "advisory.sensitivity.text" },
+  { boldKey: "advisory.allergies.bold", textKey: "advisory.allergies.text" },
+  { boldKey: "advisory.storage.bold", textKey: "advisory.storage.text" },
+  { boldKey: "advisory.children.bold", textKey: "advisory.children.text" },
 ];
 
 const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
+  const { t } = useLanguage();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
+
   const product = id ? productData[id] : null;
 
   if (!product) {
@@ -169,14 +128,14 @@ const ProductPage = () => {
         <AnnouncementBar />
         <Navbar />
         <div className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-2xl font-bold mb-4">Product not found</h1>
-          <Link to="/" className="text-primary hover:underline">← Back to Home</Link>
+          <h1 className="text-2xl font-bold mb-4">{t("productPage.notFound")}</h1>
+          <Link to="/" className="text-primary hover:underline">{t("productPage.backHome")}</Link>
         </div>
       </div>
     );
   }
 
-  const advisories = product.advisoryOverrides || defaultAdvisories;
+  const advisories = product.advisoryOverrideKeys || defaultAdvisoryKeys;
 
   return (
     <div className="min-h-screen bg-background">
@@ -184,17 +143,16 @@ const ProductPage = () => {
       <Navbar />
       <div className="container mx-auto px-4 py-4">
         <Link to="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-8">
-          <ArrowLeft className="w-4 h-4" /> Back to Products
+          <ArrowLeft className="w-4 h-4" /> {t("productPage.backToProducts")}
         </Link>
 
-        {/* Hero: Image + Info */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="rounded-2xl overflow-hidden bg-secondary/30 flex items-center justify-center p-6"
           >
-            <img src={product.image} alt={product.name} className="w-full max-h-[500px] object-contain" />
+            <img src={product.image} alt={t(product.nameKey)} className="w-full max-h-[500px] object-contain" />
           </motion.div>
 
           <motion.div
@@ -203,23 +161,21 @@ const ProductPage = () => {
             transition={{ delay: 0.1 }}
             className="flex flex-col justify-center"
           >
-            <p className="text-sm text-primary font-medium mb-2">Bloom Oil Collection</p>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-              {product.name}
-            </h1>
-            <p className="text-lg text-muted-foreground mb-4">{product.tagline}</p>
+            <p className="text-sm text-primary font-medium mb-2">{t("productPage.collection")}</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{t(product.nameKey)}</h1>
+            <p className="text-lg text-muted-foreground mb-4">{t(product.taglineKey)}</p>
             <div className="text-muted-foreground mb-6 space-y-3">
-              {product.description.split('\n\n').map((para, i) => (
+              {t(product.descriptionKey).split('\n\n').map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
 
             <div className="flex items-center gap-4 mb-6">
               <span className="inline-flex items-center gap-1 text-sm text-primary">
-                <Leaf className="w-4 h-4" /> 100% Natural
+                <Leaf className="w-4 h-4" /> {t("productPage.natural")}
               </span>
               <span className="inline-flex items-center gap-1 text-sm text-primary">
-                <Heart className="w-4 h-4" /> Cruelty Free
+                <Heart className="w-4 h-4" /> {t("productPage.crueltyFree")}
               </span>
             </div>
 
@@ -231,75 +187,70 @@ const ProductPage = () => {
             <a href={`https://wa.me/79403188?text=${product.whatsappText}`} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="rounded-full gap-2 px-8 w-full sm:w-auto">
                 <MessageCircle className="w-5 h-5" />
-                Order via WhatsApp
+                {t("productPage.orderWhatsapp")}
               </Button>
             </a>
           </motion.div>
         </div>
 
-        {/* 3-Column Cards: Benefits, Ingredients, How to Use */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-16 grid md:grid-cols-3 gap-6"
         >
-          {/* Key Benefits Card */}
           <div className="bg-card rounded-2xl p-6 border border-border shadow-sm">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">Key Benefits</h3>
+              <h3 className="text-xl font-bold text-foreground">{t("productPage.keyBenefits")}</h3>
             </div>
             <ul className="space-y-3">
-              {product.benefits.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-sm text-muted-foreground">
+              {product.benefitKeys.map((key) => (
+                <li key={key} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <CheckCircle className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  {b}
+                  {t(key)}
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Ingredients Card */}
           <div className="bg-card rounded-2xl p-6 border border-border shadow-sm">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Leaf className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">Premium Natural Ingredients</h3>
+              <h3 className="text-xl font-bold text-foreground">{t("productPage.ingredients")}</h3>
             </div>
             <ul className="space-y-3">
               {product.ingredients.map((ing) => (
-                <li key={ing.name} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <li key={ing.nameKey} className="flex items-start gap-2 text-sm text-muted-foreground">
                   <span className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
                   <span>
-                    <span className="text-foreground font-medium">{ing.name}</span>
-                    {ing.benefit && <span> — {ing.benefit}</span>}
+                    <span className="text-foreground font-medium">{t(ing.nameKey)}</span>
+                    {ing.benefitKey && <span> — {t(ing.benefitKey)}</span>}
                   </span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* How to Use Card */}
           <div className="bg-card rounded-2xl p-6 border border-border shadow-sm">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Clock className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">How to Use</h3>
+              <h3 className="text-xl font-bold text-foreground">{t("productPage.howToUse")}</h3>
             </div>
             <div className="space-y-3">
-              {product.howToUse.map((step, i) => (
-                <p key={i} className="text-sm text-muted-foreground">{step}</p>
+              {product.howToUseKeys.map((key, i) => (
+                <p key={i} className="text-sm text-muted-foreground">{t(key)}</p>
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Usage Advisory */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -307,14 +258,12 @@ const ProductPage = () => {
           className="mt-16 mb-8"
         >
           <div className="bg-secondary/60 rounded-2xl p-8 border border-border max-w-2xl">
-            <h4 className="font-semibold text-foreground mb-4">
-              Usage Advisory
-            </h4>
+            <h4 className="font-semibold text-foreground mb-4">{t("productPage.usageAdvisory")}</h4>
             <ul className="space-y-2">
               {advisories.map((a) => (
-                <li key={a.bold} className="text-sm text-muted-foreground flex gap-2">
+                <li key={a.boldKey} className="text-sm text-muted-foreground flex gap-2">
                   <span>•</span>
-                  <span><strong className="text-foreground">{a.bold}</strong> {a.text}</span>
+                  <span><strong className="text-foreground">{t(a.boldKey)}</strong> {t(a.textKey)}</span>
                 </li>
               ))}
             </ul>
