@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -8,17 +8,20 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const navLinks = [
-  { label: "Hair Oil", path: "/product/hair" },
-  { label: "Body Oil", path: "/product/body" },
-  { label: "Nails Oil", path: "/product/nails" },
-  { label: "Eyebrows Oil", path: "/product/eyebrows" },
+const navLinkKeys = [
+  { labelKey: "nav.hair", path: "/product/hair" },
+  { labelKey: "nav.body", path: "/product/body" },
+  { labelKey: "nav.nails", path: "/product/nails" },
+  { labelKey: "nav.eyebrows", path: "/product/eyebrows" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { t, lang, setLang } = useLanguage();
+
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <div className="container mx-auto flex items-center justify-between h-14 sm:h-16 px-4">
@@ -31,10 +34,10 @@ const Navbar = () => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-48">
-              {navLinks.map((link) => (
-                <DropdownMenuItem key={link.label} asChild>
+              {navLinkKeys.map((link) => (
+                <DropdownMenuItem key={link.labelKey} asChild>
                   <Link to={link.path} className={`cursor-pointer ${location.pathname === link.path ? "font-medium text-primary" : ""}`}>
-                    {link.label}
+                    {t(link.labelKey)}
                   </Link>
                 </DropdownMenuItem>
               ))}
@@ -48,27 +51,36 @@ const Navbar = () => {
               </svg>
             </div>
             <div>
-              <span className="font-semibold text-sm sm:text-base text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>Bloom Oil</span>
-              <p className="text-[9px] sm:text-[10px] text-primary leading-none">Natural Beauty Solutions</p>
+              <span className="font-semibold text-sm sm:text-base text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>{t("nav.brand")}</span>
+              <p className="text-[9px] sm:text-[10px] text-primary leading-none">{t("nav.tagline")}</p>
             </div>
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link key={link.label} to={link.path} className={`px-3 py-2 text-sm rounded-full transition-colors ${location.pathname === link.path ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}>
-              {link.label}
+          {navLinkKeys.map((link) => (
+            <Link key={link.labelKey} to={link.path} className={`px-3 py-2 text-sm rounded-full transition-colors ${location.pathname === link.path ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}>
+              {t(link.labelKey)}
             </Link>
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          {/* Language Switcher */}
+          <button
+            onClick={() => setLang(lang === "en" ? "ar" : "en")}
+            className="flex items-center gap-1 px-2.5 py-1.5 text-xs sm:text-sm rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors font-medium"
+            aria-label="Switch language"
+          >
+            <Globe className="w-3.5 h-3.5" />
+            {lang === "en" ? "عربي" : "EN"}
+          </button>
           <a href="https://wa.me/79403188" target="_blank" rel="noopener noreferrer" className="hidden md:block">
             <Button variant="outline" size="sm" className="rounded-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Cash on Delivery
+              {t("nav.cod")}
             </Button>
           </a>
           <a href="https://wa.me/79403188" target="_blank" rel="noopener noreferrer" className="md:hidden">
             <Button variant="outline" size="sm" className="rounded-full border-primary text-primary text-xs px-3">
-              Order
+              {t("nav.order")}
             </Button>
           </a>
           <button className="md:hidden p-2 rounded-lg hover:bg-accent transition-colors" onClick={() => setOpen(!open)}>
@@ -78,15 +90,15 @@ const Navbar = () => {
       </div>
       {open && (
         <nav className="md:hidden border-t border-border bg-background px-4 py-3 space-y-1">
-          {navLinks.map((link) => (
-            <Link key={link.label} to={link.path} className={`block px-3 py-2.5 text-sm rounded-lg transition-colors ${location.pathname === link.path ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent"}`} onClick={() => setOpen(false)}>
-              {link.label}
+          {navLinkKeys.map((link) => (
+            <Link key={link.labelKey} to={link.path} className={`block px-3 py-2.5 text-sm rounded-lg transition-colors ${location.pathname === link.path ? "bg-primary/10 text-primary font-medium" : "text-muted-foreground hover:bg-accent"}`} onClick={() => setOpen(false)}>
+              {t(link.labelKey)}
             </Link>
           ))}
           <div className="pt-2 border-t border-border">
             <a href="https://wa.me/79403188" target="_blank" rel="noopener noreferrer">
               <Button className="w-full rounded-full" size="sm">
-                Order via WhatsApp
+                {t("nav.orderWhatsapp")}
               </Button>
             </a>
           </div>

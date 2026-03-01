@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
 import { AlertTriangle } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
-const advisories = [
-  { bold: "Patch Test Required:", text: "Always perform a patch test 24 hours before first use." },
-  { bold: "External Use Only:", text: "Keep away from eyes and mucous membranes." },
-  { bold: "Sensitivity:", text: "May cause sensitivity in some individuals due to essential oils." },
-  { bold: "Allergies:", text: "Discontinue use if irritation, redness, or allergic reaction occurs." },
-  { bold: "Storage:", text: "Store in a cool, dry place away from direct sunlight." },
-  { bold: "Children:", text: "Keep out of reach of children." },
+const advisoryKeys = [
+  { boldKey: "advisory.patchTest.bold", textKey: "advisory.patchTest.text" },
+  { boldKey: "advisory.external.bold", textKey: "advisory.external.text" },
+  { boldKey: "advisory.sensitivity.bold", textKey: "advisory.sensitivity.text" },
+  { boldKey: "advisory.allergies.bold", textKey: "advisory.allergies.text" },
+  { boldKey: "advisory.storage.bold", textKey: "advisory.storage.text" },
+  { boldKey: "advisory.children.bold", textKey: "advisory.children.text" },
 ];
 
 const AdvisorySection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-16 px-4">
       <div className="container mx-auto max-w-2xl">
@@ -22,13 +24,13 @@ const AdvisorySection = () => {
         >
           <div className="flex items-center gap-2 mb-4">
             <AlertTriangle className="w-5 h-5 text-primary" />
-            <h4 className="font-semibold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>Usage Advisory</h4>
+            <h4 className="font-semibold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>{t("productPage.usageAdvisory")}</h4>
           </div>
           <ul className="space-y-2">
-            {advisories.map((a) => (
-              <li key={a.bold} className="text-sm text-muted-foreground flex gap-2">
+            {advisoryKeys.map((a) => (
+              <li key={a.boldKey} className="text-sm text-muted-foreground flex gap-2">
                 <span>•</span>
-                <span><strong className="text-foreground">{a.bold}</strong> {a.text}</span>
+                <span><strong className="text-foreground">{t(a.boldKey)}</strong> {t(a.textKey)}</span>
               </li>
             ))}
           </ul>
