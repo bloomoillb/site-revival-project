@@ -83,7 +83,7 @@ export const en: Record<string, string> = {
 
   // Product Page - Body
   "product.body.tagline": "Smooth. Nourish. Glow.",
-  "product.body.description": "A lightweight, fast-absorbing oil that deeply hydrates and softens the skin while enhancing a healthy, radiant appearance. Designed for daily use, it leaves your body feeling silky, supple, and beautifully revitalized — without heaviness or residue.",
+  "product.body.description": "A lightweight, fast-absorbing blend that nourishes and softens the skin, keeping it silky, supple, and radiant — ideal for daily pampering without heaviness or residue.",
   "product.body.benefit1": "Deeply nourishes the skin and keeps it feeling soft for hours",
   "product.body.benefit2": "Helps lock in moisture after showering to prevent dryness",
   "product.body.benefit3": "Improves skin smoothness and makes rough areas feel softer",
