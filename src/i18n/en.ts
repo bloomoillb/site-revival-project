@@ -60,7 +60,7 @@ export const en: Record<string, string> = {
 
   // Product Page - Hair
   "product.hair.tagline": "Nourish, strengthen, and revive your hair naturally",
-  "product.hair.description": "Our Premium Hair Oil is a carefully crafted blend of Coconut, Castor, Sweet Almond, and Rosemary extract, enriched with Vitamin E to deeply condition the hair and scalp.\n\nRich in essential fatty acids and antioxidants, this lightweight oil helps reduce dryness, minimize breakage, and enhance natural shine — leaving hair looking fuller, smoother, and healthier from root to tip.",
+  "product.hair.description": "Our Premium Hair Oil is a luxurious blend of Coconut, Castor, Sweet Almond, and Rosemary extract, enriched with Vitamin E to condition and soften your hair. This lightweight oil helps maintain smoothness, manageability, and natural shine — leaving hair looking vibrant, silky, and full of life from root to tip.",
   "product.hair.benefit1": "Helps moisturize and soften dry hair",
   "product.hair.benefit2": "Improves the look of fuller, smoother strands",
   "product.hair.benefit3": "Helps condition dry scalp feel",
