@@ -16,7 +16,7 @@ export const en: Record<string, string> = {
   // Hero
   "hero.title1": "Discover Your Natural Beauty with",
   "hero.titleBrand": "Bloom Oil",
-  "hero.subtitle": "Premium cosmetic oils crafted from nature's finest ingredients for radiant skin and lustrous hair",
+  "hero.subtitle": "Premium cosmetic oils from nature's finest ingredients to nourish, soften, and give a natural glow to your skin, hair, nails, brows, and lashes.",
   "hero.orderNow": "Order Now via WhatsApp",
   "hero.viewProducts": "View Products",
 
