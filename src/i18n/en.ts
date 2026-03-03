@@ -163,6 +163,7 @@ export const en: Record<string, string> = {
   "footer.contact": "Contact Us on WhatsApp",
   "footer.madeIn": "Made in Beirut, Lebanon · Tel:",
   "footer.rights": "© 2025 Bloom Oil. Natural Beauty Solutions. All rights reserved.",
+  "footer.disclaimer": "This product is intended for cosmetic use only to cleanse, condition, or enhance the appearance. It is not intended to diagnose, treat, cure, or prevent any disease or medical condition. Individual results may vary.",
 
   // FAQ
   "faq.title": "Frequently Asked Questions",
