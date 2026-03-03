@@ -120,7 +120,7 @@ export const en: Record<string, string> = {
 
   // Product Page - Eyebrows
   "product.eyebrows.tagline": "Achieve fuller, more defined brows and lashes",
-  "product.eyebrows.description": "Transform your brows and lashes with our specially formulated Elixir. Designed to stimulate hair growth and nourish existing brows and lashes, this elixir helps you achieve naturally fuller, thicker results over time.",
+  "product.eyebrows.description": "Introducing our gentle blend of conditioning oils designed to nourish and refine brows and lashes, helping them look fuller and more defined. With regular use, brows and lashes appear naturally enhanced, soft, and well-groomed.",
   "product.eyebrows.benefit1": "Promotes brow and lash growth",
   "product.eyebrows.benefit2": "Thickens and darkens brows naturally",
   "product.eyebrows.benefit3": "Conditions and softens brow and lash hairs",
