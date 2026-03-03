@@ -52,6 +52,7 @@ const FooterCTA = () => {
         </div>
         <p className="text-sm text-muted-foreground">{t("footer.madeIn")} <a href="tel:79403188" className="hover:text-foreground transition-colors">79 403 188</a> · <a href="mailto:info@bloomoil.beauty" className="hover:text-foreground transition-colors">info@bloomoil.beauty</a></p>
         <p className="text-xs text-muted-foreground">{t("footer.rights")}</p>
+        <p className="text-[10px] text-muted-foreground/70 max-w-lg mx-auto mt-4">{t("footer.disclaimer")}</p>
       </div>
     </section>
   );
