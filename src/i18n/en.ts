@@ -100,7 +100,7 @@ export const en: Record<string, string> = {
 
   // Product Page - Nails
   "product.nails.tagline": "Strengthen and nourish your nails",
-  "product.nails.description": "Give your nails the care they deserve with our specialized Nail Care Oil. This concentrated formula penetrates deep into the nail bed and cuticles, providing essential nutrients for stronger, healthier nails.",
+  "product.nails.description": "Give your nails the care they deserve with our Nail Care Oil Mix, formulated with nutrient-rich oils to hydrate and condition nails and cuticles. Regular use gives smooth, well-looking, and naturally radiant nails.",
   "product.nails.benefit1": "Deeply moisturizes nails and cuticles",
   "product.nails.benefit2": "Strengthens weak, brittle nails",
   "product.nails.benefit3": "Promotes healthy nail growth",
