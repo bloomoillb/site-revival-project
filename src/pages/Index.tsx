@@ -18,6 +18,14 @@ const Index = () => {
         <AdvisorySection />
         <FooterCTA />
       </main>
+      {/* Hidden SEO content for search engine crawlers */}
+      <div className="sr-only" aria-hidden="true">
+        <h2>Bloom Oil - Natural Beauty Products</h2>
+        <p>Premium natural beauty oil for hair, skin, nails, eyebrows, and lashes. Made from 100% organic, cruelty-free ingredients.</p>
+        <p>Our product range includes Premium Hair Oil, Luxurious Body Oil, Nail Care Oil Mix, and Brow &amp; Lash Elixir.</p>
+        <p>All Bloom Oil products are crafted with natural ingredients like castor oil, argan oil, sweet almond oil, jojoba oil, and vitamin E to nourish, soften, and give a natural glow.</p>
+        <p>Shop natural beauty oils online. Free delivery available. Order via WhatsApp.</p>
+      </div>
     </div>
   );
 };
