@@ -45,7 +45,7 @@ const FooterCTA = () => {
             className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors" aria-label="Instagram">
             <InstagramIcon />
           </a>
-          <a href="https://www.tiktok.com/@bloomoil" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.tiktok.com/@bloomoillb" target="_blank" rel="noopener noreferrer"
             className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-accent transition-colors" aria-label="TikTok">
             <TikTokIcon />
           </a>
