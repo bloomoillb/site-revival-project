@@ -15,6 +15,7 @@ const navLinkKeys = [
   { labelKey: "nav.body", path: "/product/body" },
   { labelKey: "nav.nails", path: "/product/nails" },
   { labelKey: "nav.eyebrows", path: "/product/eyebrows" },
+  { labelKey: "nav.faq", path: "/faq" },
 ];
 
 const Navbar = () => {

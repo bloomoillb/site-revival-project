@@ -7,6 +7,7 @@ export const en: Record<string, string> = {
   "nav.body": "Body Oil",
   "nav.nails": "Nails Oil",
   "nav.eyebrows": "Eyebrows Oil",
+  "nav.faq": "FAQ",
   "nav.cod": "Cash on Delivery",
   "nav.order": "Order",
   "nav.orderWhatsapp": "Order via WhatsApp",
