@@ -270,6 +270,11 @@ const ProductPage = () => {
           </div>
         </motion.div>
       </div>
+      <div className="container mx-auto px-4 pb-8 text-center">
+        <Link to="/faq" className="text-primary font-medium hover:underline text-sm">
+          Read our FAQ
+        </Link>
+      </div>
       <FooterCTA />
     </div>
   );

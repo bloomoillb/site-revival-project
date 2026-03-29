@@ -17,6 +17,12 @@ const Index = () => {
         <FeaturesSection />
         <ProductsSection />
         <AdvisorySection />
+        <section className="py-12 px-4 text-center">
+          <p className="text-muted-foreground mb-3">Have questions about our products?</p>
+          <Link to="/faq" className="text-primary font-medium hover:underline">
+            Read our FAQ →
+          </Link>
+        </section>
         <FooterCTA />
       </main>
       {/* Hidden SEO content for search engine crawlers */}
