@@ -6,8 +6,15 @@ import FeaturesSection from "@/components/FeaturesSection";
 import ProductsSection from "@/components/ProductsSection";
 import AdvisorySection from "@/components/AdvisorySection";
 import FooterCTA from "@/components/FooterCTA";
+import { useSEO } from "@/hooks/useSEO";
 
 const Index = () => {
+  useSEO({
+    title: "Bloom Oil | Natural Oil for Hair, Skin & Nails",
+    description: "Premium natural beauty oils from organic ingredients. Nourish your hair, skin, nails, brows and lashes with Bloom Oil for visible results.",
+    canonical: "/",
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <AnnouncementBar />

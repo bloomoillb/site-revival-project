@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, MessageCircle, Leaf, Heart, Sparkles, Clock, CheckCircle } from "lucide-react";
+import { ArrowLeft, MessageCircle, Leaf, Heart, Sparkles, Clock, CheckCircle, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import FooterCTA from "@/components/FooterCTA";
 import { useLanguage } from "@/i18n/LanguageContext";
+import { useSEO } from "@/hooks/useSEO";
 
 interface ProductConfig {
   nameKey: string;
@@ -20,6 +22,9 @@ interface ProductConfig {
   howToUseKeys: string[];
   whatsappText: string;
   advisoryOverrideKeys?: { boldKey: string; textKey: string }[];
+  seo: { title: string; description: string; canonical: string };
+  resultStatements: string[];
+  faq: { q: string; a: string }[];
 }
 
 const productData: Record<string, ProductConfig> = {
@@ -40,6 +45,22 @@ const productData: Record<string, ProductConfig> = {
     ],
     howToUseKeys: ["product.hair.use1", "product.hair.use2", "product.hair.use3", "product.hair.use4"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Premium%20Hair%20Oil.",
+    seo: {
+      title: "Bloom Oil Hair | Repair & Shine Oil",
+      description: "Nourish and strengthen your hair with Bloom Oil's natural blend of coconut, castor, and almond oils. Visible shine and softness in weeks.",
+      canonical: "/product/hair",
+    },
+    resultStatements: [
+      "Noticeably softer, silkier hair within 1–2 weeks of regular use.",
+      "Improved shine and manageability after just a few applications.",
+      "Reduced appearance of split ends and breakage over 3–4 weeks.",
+      "Scalp feels refreshed and conditioned with consistent overnight use.",
+    ],
+    faq: [
+      { q: "Can I use it on colored hair?", a: "Yes, our hair oil is gentle and safe for color-treated hair." },
+      { q: "How much oil should I use per session?", a: "3–5 drops for short hair, 5–8 drops for longer hair. Adjust based on thickness." },
+      { q: "Will it make my hair greasy?", a: "No, the lightweight formula absorbs quickly without leaving a greasy residue when used in the right amount." },
+    ],
   },
   body: {
     nameKey: "product.body.name",
@@ -58,6 +79,22 @@ const productData: Record<string, ProductConfig> = {
     ],
     howToUseKeys: ["product.body.use1", "product.body.use2", "product.body.use3"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Luxurious%20Body%20Oil.",
+    seo: {
+      title: "Bloom Oil Body | Hydrating Skin Oil",
+      description: "Deeply hydrate and nourish your skin with Bloom Oil's body oil. Fast-absorbing, natural glow formula with sweet almond and vitamin E.",
+      canonical: "/product/body",
+    },
+    resultStatements: [
+      "Skin feels deeply moisturized and supple from the first application.",
+      "Natural, healthy-looking glow develops within days of daily use.",
+      "Rough patches and dry areas feel noticeably smoother after 1–2 weeks.",
+      "Skin stays soft and hydrated for hours without greasy residue.",
+    ],
+    faq: [
+      { q: "Can I use it on my face?", a: "This oil is formulated for body use. For facial care, we recommend our specialized products." },
+      { q: "Is it suitable for use during pregnancy?", a: "Our ingredients are natural, but we recommend consulting your doctor before use during pregnancy." },
+      { q: "Does it stain clothes?", a: "The oil absorbs quickly. Allow a minute before dressing for best results." },
+    ],
   },
   nails: {
     nameKey: "product.nails.name",
@@ -75,6 +112,22 @@ const productData: Record<string, ProductConfig> = {
     ],
     howToUseKeys: ["product.nails.use1", "product.nails.use2", "product.nails.use3"],
     whatsappText: "Hello!%20I%27m%20interested%20in%20the%20Nail%20Care%20Oil.",
+    seo: {
+      title: "Bloom Oil Nails | Nail Strength & Care Oil",
+      description: "Strengthen brittle nails and hydrate cuticles with Bloom Oil's nail care formula. Natural oils for healthy, smooth, radiant nails.",
+      canonical: "/product/nails",
+    },
+    resultStatements: [
+      "Nails feel stronger and less prone to breakage within 1–2 weeks.",
+      "Cuticles appear softer and healthier with daily application.",
+      "Natural nail shine improves noticeably after consistent use.",
+      "Reduced splitting and peeling over 3–4 weeks of regular care.",
+    ],
+    faq: [
+      { q: "Can I apply it over nail polish?", a: "For best absorption, apply directly to bare nails and cuticles." },
+      { q: "How long until I see stronger nails?", a: "Most users notice improvement in nail strength within 2–3 weeks of daily use." },
+      { q: "Can I use it on toenails too?", a: "Yes, the formula works equally well on fingernails and toenails." },
+    ],
   },
   eyebrows: {
     nameKey: "product.eyebrows.name",
@@ -100,6 +153,22 @@ const productData: Record<string, ProductConfig> = {
       { boldKey: "advisory.storage.bold", textKey: "advisory.storage.text" },
       { boldKey: "advisory.children.bold", textKey: "advisory.children.text" },
     ],
+    seo: {
+      title: "Bloom Oil Brows | Brow & Lash Growth Elixir",
+      description: "Promote fuller brows and longer lashes naturally with Bloom Oil's elixir. Castor and argan oils for visible growth in 4–6 weeks.",
+      canonical: "/product/eyebrows",
+    },
+    resultStatements: [
+      "Brows appear fuller and more defined within 4–6 weeks of nightly use.",
+      "Lashes look naturally enhanced, soft, and well-groomed over time.",
+      "Sparse areas begin to fill in with consistent application.",
+      "Brow and lash hairs feel conditioned and softer after the first week.",
+    ],
+    faq: [
+      { q: "Is it safe to use near my eyes?", a: "Yes, apply along the lash line carefully. Avoid direct contact with the eye itself." },
+      { q: "Can I use it with lash extensions?", a: "We recommend applying to natural lashes only. Consult your lash technician before use with extensions." },
+      { q: "How long before I see fuller brows?", a: "Most users see noticeable improvement in brow fullness after 4–6 weeks of nightly use." },
+    ],
   },
 };
 
@@ -116,11 +185,33 @@ const ProductPage = () => {
   const { id } = useParams<{ id: string }>();
   const { t } = useLanguage();
 
+  const product = id ? productData[id] : null;
+
+  useSEO({
+    title: product?.seo.title || "Bloom Oil | Product Not Found",
+    description: product?.seo.description || "Explore Bloom Oil's natural beauty products.",
+    canonical: product?.seo.canonical || `/product/${id}`,
+    jsonLd: product
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: t(product.nameKey),
+          description: t(product.descriptionKey).substring(0, 200),
+          image: `https://www.bloomoil.beauty${product.image}`,
+          brand: { "@type": "Brand", name: "Bloom Oil" },
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: product.price.replace("$", ""),
+            availability: "https://schema.org/InStock",
+          },
+        }
+      : undefined,
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [id]);
-
-  const product = id ? productData[id] : null;
 
   if (!product) {
     return (
@@ -146,6 +237,7 @@ const ProductPage = () => {
           <ArrowLeft className="w-4 h-4" /> {t("productPage.backToProducts")}
         </Link>
 
+        {/* Hero: Image + Info */}
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -193,6 +285,7 @@ const ProductPage = () => {
           </motion.div>
         </div>
 
+        {/* H2 Sections: Benefits, Ingredients, How to Use */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -204,7 +297,7 @@ const ProductPage = () => {
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">{t("productPage.keyBenefits")}</h3>
+              <h2 className="text-xl font-bold text-foreground">{t("productPage.keyBenefits")}</h2>
             </div>
             <ul className="space-y-3">
               {product.benefitKeys.map((key) => (
@@ -221,7 +314,7 @@ const ProductPage = () => {
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Leaf className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">{t("productPage.ingredients")}</h3>
+              <h2 className="text-xl font-bold text-foreground">{t("productPage.ingredients")}</h2>
             </div>
             <ul className="space-y-3">
               {product.ingredients.map((ing) => (
@@ -241,7 +334,7 @@ const ProductPage = () => {
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                 <Clock className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">{t("productPage.howToUse")}</h3>
+              <h2 className="text-xl font-bold text-foreground">{t("productPage.howToUse")}</h2>
             </div>
             <div className="space-y-3">
               {product.howToUseKeys.map((key, i) => (
@@ -251,14 +344,68 @@ const ProductPage = () => {
           </div>
         </motion.div>
 
+        {/* H2: Results */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 mb-8"
+          className="mt-12"
+        >
+          <div className="bg-card rounded-2xl p-6 border border-border shadow-sm max-w-2xl">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                <Heart className="w-5 h-5 text-primary" />
+              </div>
+              <h2 className="text-xl font-bold text-foreground">Results</h2>
+            </div>
+            <ul className="space-y-3">
+              {product.resultStatements.map((statement, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <CheckCircle className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  {statement}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* H2: FAQ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 max-w-2xl"
+        >
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+              <HelpCircle className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-xl font-bold text-foreground">FAQ</h2>
+          </div>
+          <Accordion type="single" collapsible className="space-y-2">
+            {product.faq.map((item, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="bg-card rounded-lg border border-border px-4">
+                <AccordionTrigger className="text-left text-foreground font-medium">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+          <div className="mt-4">
+            <Link to="/faq" className="text-primary font-medium hover:underline text-sm">
+              Read our FAQ →
+            </Link>
+          </div>
+        </motion.div>
+
+        {/* Usage Advisory */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12 mb-8"
         >
           <div className="bg-secondary/60 rounded-2xl p-8 border border-border max-w-2xl">
-            <h4 className="font-semibold text-foreground mb-4">{t("productPage.usageAdvisory")}</h4>
+            <h2 className="font-semibold text-foreground mb-4">{t("productPage.usageAdvisory")}</h2>
             <ul className="space-y-2">
               {advisories.map((a) => (
                 <li key={a.boldKey} className="text-sm text-muted-foreground flex gap-2">
@@ -269,11 +416,6 @@ const ProductPage = () => {
             </ul>
           </div>
         </motion.div>
-      </div>
-      <div className="container mx-auto px-4 pb-8 text-center">
-        <Link to="/faq" className="text-primary font-medium hover:underline text-sm">
-          Read our FAQ
-        </Link>
       </div>
       <FooterCTA />
     </div>
