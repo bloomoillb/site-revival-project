@@ -7,6 +7,7 @@ export const ar: Record<string, string> = {
   "nav.body": "زيت الجسم",
   "nav.nails": "زيت الأظافر",
   "nav.eyebrows": "زيت الحواجب",
+  "nav.faq": "الأسئلة الشائعة",
   "nav.cod": "الدفع عند الاستلام",
   "nav.order": "اطلب",
   "nav.orderWhatsapp": "اطلب عبر واتساب",
