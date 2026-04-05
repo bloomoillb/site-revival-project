@@ -137,6 +137,7 @@ const productData: Record<string, ProductConfig> = {
     price: "$12",
     size: "15 ml / 0.5 oz",
     image: "/images/brow-oil.png",
+    video: "/images/Bloomoil_Lebanon_Eyelash.mp4",
     benefitKeys: ["product.eyebrows.benefit1", "product.eyebrows.benefit2", "product.eyebrows.benefit3", "product.eyebrows.benefit4", "product.eyebrows.benefit5"],
     ingredients: [
       { nameKey: "ing.castor" },
