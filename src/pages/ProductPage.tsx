@@ -17,6 +17,7 @@ interface ProductConfig {
   price: string;
   size: string;
   image: string;
+  video?: string;
   benefitKeys: string[];
   ingredients: { nameKey: string; benefitKey?: string }[];
   howToUseKeys: string[];
@@ -136,6 +137,7 @@ const productData: Record<string, ProductConfig> = {
     price: "$12",
     size: "15 ml / 0.5 oz",
     image: "/images/brow-oil.png",
+    video: "/images/Bloomoil_Lebanon_Eyelash.mp4",
     benefitKeys: ["product.eyebrows.benefit1", "product.eyebrows.benefit2", "product.eyebrows.benefit3", "product.eyebrows.benefit4", "product.eyebrows.benefit5"],
     ingredients: [
       { nameKey: "ing.castor" },
@@ -284,6 +286,32 @@ const ProductPage = () => {
             </a>
           </motion.div>
         </div>
+
+        {/* Video Section */}
+        {product.video && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12"
+          >
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-xl font-bold text-foreground mb-4 text-center">See It in Action</h2>
+              <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
+                <video
+                  src={product.video}
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full"
+                  poster={product.image}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* H2 Sections: Benefits, Ingredients, How to Use */}
         <motion.div
