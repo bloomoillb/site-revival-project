@@ -36,6 +36,7 @@ const productData: Record<string, ProductConfig> = {
     price: "$25",
     size: "100 ml / 3.4 oz",
     image: "/images/hair-oil.webp",
+    video: "/images/bloomoil_hair_oil.mp4",
     benefitKeys: ["product.hair.benefit1", "product.hair.benefit2", "product.hair.benefit3", "product.hair.benefit4", "product.hair.benefit5"],
     ingredients: [
       { nameKey: "product.hair.ing1", benefitKey: "product.hair.ing1b" },
@@ -298,7 +299,7 @@ const ProductPage = () => {
           >
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl font-bold text-foreground mb-4 text-center">See It in Action</h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
+              <div className="rounded-2xl overflow-hidden border border-border shadow-sm relative">
                 <video
                   src={product.video}
                   controls
@@ -309,6 +310,9 @@ const ProductPage = () => {
                 >
                   Your browser does not support the video tag.
                 </video>
+                <span className="absolute top-3 right-3 text-white/70 text-sm font-medium pointer-events-none select-none drop-shadow-md">
+                  @bloomoillb
+                </span>
               </div>
             </div>
           </motion.div>
