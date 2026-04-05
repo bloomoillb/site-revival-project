@@ -298,7 +298,7 @@ const ProductPage = () => {
           >
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl font-bold text-foreground mb-4 text-center">See It in Action</h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-sm">
+              <div className="rounded-2xl overflow-hidden border border-border shadow-sm relative">
                 <video
                   src={product.video}
                   controls
@@ -309,6 +309,9 @@ const ProductPage = () => {
                 >
                   Your browser does not support the video tag.
                 </video>
+                <span className="absolute top-3 right-3 text-white/70 text-sm font-medium pointer-events-none select-none drop-shadow-md">
+                  @bloomoillb
+                </span>
               </div>
             </div>
           </motion.div>
