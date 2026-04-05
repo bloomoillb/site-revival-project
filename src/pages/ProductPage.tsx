@@ -104,6 +104,7 @@ const productData: Record<string, ProductConfig> = {
     price: "$7",
     size: "15 ml / 0.5 oz",
     image: "/images/nail-oil.webp",
+    video: "/images/Nail_Elexir.mp4",
     benefitKeys: ["product.nails.benefit1", "product.nails.benefit2", "product.nails.benefit3", "product.nails.benefit4", "product.nails.benefit5"],
     ingredients: [
       { nameKey: "product.nails.ing1", benefitKey: "product.nails.ing1b" },
