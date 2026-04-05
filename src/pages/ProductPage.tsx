@@ -36,6 +36,7 @@ const productData: Record<string, ProductConfig> = {
     price: "$25",
     size: "100 ml / 3.4 oz",
     image: "/images/hair-oil.webp",
+    video: "/images/bloomoil_hair_oil.mp4",
     benefitKeys: ["product.hair.benefit1", "product.hair.benefit2", "product.hair.benefit3", "product.hair.benefit4", "product.hair.benefit5"],
     ingredients: [
       { nameKey: "product.hair.ing1", benefitKey: "product.hair.ing1b" },
