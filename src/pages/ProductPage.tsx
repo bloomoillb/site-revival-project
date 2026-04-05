@@ -17,6 +17,7 @@ interface ProductConfig {
   price: string;
   size: string;
   image: string;
+  video?: string;
   benefitKeys: string[];
   ingredients: { nameKey: string; benefitKey?: string }[];
   howToUseKeys: string[];
