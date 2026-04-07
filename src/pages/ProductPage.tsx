@@ -300,13 +300,13 @@ const ProductPage = () => {
           >
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl font-bold text-foreground mb-4 text-center">See It in Action</h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-sm relative">
+              <div className="rounded-2xl overflow-hidden border border-border shadow-sm relative" style={{ aspectRatio: '16/9' }}>
                 <video
                   src={product.video}
                   controls
                   playsInline
                   preload="metadata"
-                  className="w-full"
+                  className="w-full h-full object-cover"
                   poster={product.image}
                 >
                   Your browser does not support the video tag.
