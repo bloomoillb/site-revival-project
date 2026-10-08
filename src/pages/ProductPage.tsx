@@ -71,7 +71,6 @@ const productData: Record<string, ProductConfig> = {
     price: "$30",
     size: "100 ml / 3.4 oz",
     image: "/images/body-oil-new.png",
-    video: "/images/body-oil-video.mp4",
     benefitKeys: Array.from({ length: 10 }, (_, i) => `product.body.benefit${i + 1}`),
     ingredients: [
       { nameKey: "ing.sweetAlmond" },
@@ -300,18 +299,18 @@ const ProductPage = () => {
           >
             <div className="max-w-2xl mx-auto">
               <h2 className="text-xl font-bold text-foreground mb-4 text-center">See It in Action</h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-sm relative" style={{ aspectRatio: '16/9' }}>
+              <div className="rounded-2xl overflow-hidden border border-border shadow-sm relative">
                 <video
                   src={product.video}
                   controls
                   playsInline
                   preload="metadata"
-                  className="w-full h-full object-cover"
+                  className="w-full"
                   poster={product.image}
                 >
                   Your browser does not support the video tag.
                 </video>
-                <span className="absolute bottom-3 right-3 text-white/90 text-sm font-semibold pointer-events-none select-none drop-shadow-lg">
+                <span className="absolute top-3 right-3 text-white/70 text-sm font-medium pointer-events-none select-none drop-shadow-md">
                   @bloomoillb
                 </span>
               </div>
